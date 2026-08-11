@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#7c3aed">
 <title>Vibely</title>
-
 <style>
 * {
   box-sizing: border-box;
@@ -13,13 +12,11 @@
   padding: 0;
   font-family: Arial, sans-serif;
 }
-
 body {
   background: #f7f5ff;
   color: #202024;
   padding-bottom: 80px;
 }
-
 header {
   background: #7c3aed;
   color: white;
@@ -28,119 +25,143 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
 header h1 {
   font-size: 28px;
 }
-
-.profile-btn {
-  background: white;
-  color: #7c3aed;
-  border: none;
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  font-size: 20px;
-}
-
 main {
   max-width: 700px;
   margin: auto;
   padding: 20px;
 }
-
+.screen {
+  display: none;
+}
+.screen.active {
+  display: block;
+}
 .welcome {
   margin-bottom: 25px;
 }
-
 .welcome h2 {
   font-size: 25px;
   margin-bottom: 6px;
 }
-
 .welcome p {
   color: #666;
 }
-
 .section {
   margin-top: 25px;
 }
-
 .section h3 {
-  font-size: 20px;
   margin-bottom: 12px;
+  font-size: 20px;
 }
-
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
-
 .card {
   background: white;
+  border: none;
   border-radius: 18px;
-  padding: 18px;
+  padding: 20px;
+  text-align: left;
   box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  width: 100%;
 }
-
 .card-icon {
   font-size: 32px;
   margin-bottom: 10px;
 }
-
 .card h4 {
   margin-bottom: 5px;
 }
-
 .card p {
   color: #777;
   font-size: 14px;
 }
-
-.chat {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.list-item {
   background: white;
-  padding: 15px;
-  margin-bottom: 10px;
+  padding: 17px;
   border-radius: 15px;
-}
-
-.chat-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #ede9fe;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 22px;
+  gap: 13px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-
-.chat-info {
+.icon {
+  font-size: 28px;
+}
+.info {
   flex: 1;
 }
-
-.chat-info h4 {
+.info h4 {
   margin-bottom: 4px;
 }
-
-.chat-info p {
+.info p {
   color: #777;
   font-size: 13px;
 }
-
-.join {
+.action {
   background: #7c3aed;
   color: white;
   border: none;
-  border-radius: 10px;
   padding: 9px 13px;
+  border-radius: 10px;
   font-weight: bold;
 }
-
+.back {
+  border: none;
+  background: transparent;
+  color: #7c3aed;
+  font-size: 16px;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+.profile-box {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: #ede9fe;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  margin: 0 auto 15px;
+}
+.interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 15px;
+}
+.tag {
+  background: #ede9fe;
+  color: #6d28d9;
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+.game {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+.game button {
+  margin-top: 12px;
+}
 .safety {
   background: white;
   border-left: 5px solid #7c3aed;
@@ -148,17 +169,11 @@ main {
   border-radius: 12px;
   margin-top: 25px;
 }
-
-.safety h3 {
-  margin-bottom: 7px;
-}
-
 .safety p {
   color: #666;
   font-size: 14px;
   line-height: 1.5;
 }
-
 nav {
   position: fixed;
   bottom: 0;
@@ -167,148 +182,222 @@ nav {
   background: white;
   display: flex;
   justify-content: space-around;
-  padding: 12px 5px;
+  padding: 10px 5px;
   box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+  z-index: 20;
 }
-
 nav button {
   border: none;
   background: none;
   font-size: 12px;
   color: #666;
 }
-
+nav button.active {
+  color: #7c3aed;
+  font-weight: bold;
+}
 nav button span {
   display: block;
-  font-size: 22px;
+  font-size: 21px;
   margin-bottom: 3px;
 }
 </style>
 </head>
-
 <body>
-
 <header>
   <h1>Vibely</h1>
-  <button class="profile-btn">👤</button>
 </header>
-
 <main>
-
-<div class="welcome">
-  <h2>Welcome to Vibely 👋</h2>
-  <p>Find people, interests and games you enjoy.</p>
-</div>
-
-<section class="section">
-  <h3>Explore</h3>
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="card-icon">👥</div>
-      <h4>People</h4>
-      <p>Discover people in your age range.</p>
+<!-- HOME -->
+<section id="home" class="screen active">
+  <div class="welcome">
+    <h2>Welcome to Vibely 👋</h2>
+    <p>Find people, interests and games you enjoy.</p>
+  </div>
+  <div class="section">
+    <h3>Explore</h3>
+    <div class="cards">
+      <button class="card" onclick="showScreen('discover')">
+        <div class="card-icon">👥</div>
+        <h4>People</h4>
+        <p>Discover people in your age range.</p>
+      </button>
+      <button class="card" onclick="showScreen('chats')">
+        <div class="card-icon">💬</div>
+        <h4>Chat Rooms</h4>
+        <p>Join moderated group conversations.</p>
+      </button>
+      <button class="card" onclick="showScreen('games')">
+        <div class="card-icon">🎮</div>
+        <h4>Games</h4>
+        <p>Play fun games with friends.</p>
+      </button>
+      <button class="card" onclick="showScreen('discover')">
+        <div class="card-icon">⭐</div>
+        <h4>Interests</h4>
+        <p>Find people with similar interests.</p>
+      </button>
     </div>
-
-    <div class="card">
-      <div class="card-icon">💬</div>
-      <h4>Chat Rooms</h4>
-      <p>Join moderated group conversations.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🎮</div>
-      <h4>Games</h4>
-      <p>Play fun games with friends.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">⭐</div>
-      <h4>Interests</h4>
-      <p>Connect through shared interests.</p>
-    </div>
-
+  </div>
+  <div class="safety">
+    <h3>🛡️ Vibely Safety</h3>
+    <p>
+      Keep conversations respectful. Never share your address,
+      passwords or exact location. Use report or block features
+      if someone makes you uncomfortable.
+    </p>
   </div>
 </section>
-
-<section class="section">
-  <h3>Popular Rooms</h3>
-
-  <div class="chat">
-    <div class="chat-icon">🎮</div>
-
-    <div class="chat-info">
+<!-- DISCOVER -->
+<section id="discover" class="screen">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <h2>🔎 Discover</h2>
+  <br>
+  <div class="list-item">
+    <div class="icon">👤</div>
+    <div class="info">
+      <h4>Alex</h4>
+      <p>Gaming • Music • Basketball</p>
+    </div>
+    <button class="action">View</button>
+  </div>
+  <div class="list-item">
+    <div class="icon">👤</div>
+    <div class="info">
+      <h4>Jordan</h4>
+      <p>Art • Music • Movies</p>
+    </div>
+    <button class="action">View</button>
+  </div>
+  <div class="list-item">
+    <div class="icon">👤</div>
+    <div class="info">
+      <h4>Taylor</h4>
+      <p>Gaming • Sports • Anime</p>
+    </div>
+    <button class="action">View</button>
+  </div>
+</section>
+<!-- CHATS -->
+<section id="chats" class="screen">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <h2>💬 Chat Rooms</h2>
+  <br>
+  <div class="list-item">
+    <div class="icon">🎮</div>
+    <div class="info">
       <h4>Gaming</h4>
-      <p>Talk about your favorite games</p>
+      <p>Talk about your favorite games.</p>
     </div>
-
-    <button class="join">Join</button>
+    <button class="action">Join</button>
   </div>
-
-  <div class="chat">
-    <div class="chat-icon">🎵</div>
-
-    <div class="chat-info">
+  <div class="list-item">
+    <div class="icon">🎵</div>
+    <div class="info">
       <h4>Music</h4>
-      <p>Share music and discover artists</p>
+      <p>Share music and discover artists.</p>
     </div>
-
-    <button class="join">Join</button>
+    <button class="action">Join</button>
   </div>
-
-  <div class="chat">
-    <div class="chat-icon">🎨</div>
-
-    <div class="chat-info">
+  <div class="list-item">
+    <div class="icon">🎨</div>
+    <div class="info">
       <h4>Art & Creativity</h4>
-      <p>Share creative ideas and projects</p>
+      <p>Share creative ideas.</p>
     </div>
-
-    <button class="join">Join</button>
+    <button class="action">Join</button>
   </div>
-
 </section>
-
-<div class="safety">
-  <h3>🛡️ Vibely Safety</h3>
-  <p>
-    Keep conversations respectful. Never share private information
-    such as your address, passwords or exact location. You can report
-    or block someone whenever you feel uncomfortable.
-  </p>
-</div>
-
+<!-- GAMES -->
+<section id="games" class="screen">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <h2>🎮 Games</h2>
+  <br>
+  <div class="game">
+    <h3>Would You Rather?</h3>
+    <p>Choose between two fun options.</p>
+    <button class="action" onclick="alert('Game coming soon!')">
+      Play
+    </button>
+  </div>
+  <div class="game">
+    <h3>Trivia</h3>
+    <p>Test your knowledge.</p>
+    <button class="action" onclick="alert('Trivia coming soon!')">
+      Play
+    </button>
+  </div>
+  <div class="game">
+    <h3>Guess the Emoji</h3>
+    <p>Guess what the emojis represent.</p>
+    <button class="action" onclick="alert('Game coming soon!')">
+      Play
+    </button>
+  </div>
+</section>
+<!-- PROFILE -->
+<section id="profile" class="screen">
+  <button class="back" onclick="showScreen('home')">← Home</button>
+  <h2>👤 Profile</h2>
+  <br>
+  <div class="profile-box">
+    <div class="avatar">👤</div>
+    <h2>Your Profile</h2>
+    <p style="color:#777;margin-top:7px;">
+      Your profile will appear here.
+    </p>
+    <div class="interests">
+      <span class="tag">🎮 Gaming</span>
+      <span class="tag">🎵 Music</span>
+      <span class="tag">🎨 Art</span>
+    </div>
+    <br>
+    <button class="action" onclick="alert('Profile editing coming next!')">
+      Edit Profile
+    </button>
+  </div>
+</section>
 </main>
-
+<!-- NAVIGATION -->
 <nav>
-
-<button>
-  <span>🏠</span>
-  Home
-</button>
-
-<button>
-  <span>🔎</span>
-  Discover
-</button>
-
-<button>
-  <span>💬</span>
-  Chats
-</button>
-
-<button>
-  <span>🎮</span>
-  Games
-</button>
-
-<button>
-  <span>👤</span>
-  Profile
-</button>
-
+  <button id="nav-home" onclick="showScreen('home')" class="active">
+    <span>🏠</span>
+    Home
+  </button>
+  <button id="nav-discover" onclick="showScreen('discover')">
+    <span>🔎</span>
+    Discover
+  </button>
+  <button id="nav-chats" onclick="showScreen('chats')">
+    <span>💬</span>
+    Chats
+  </button>
+  <button id="nav-games" onclick="showScreen('games')">
+    <span>🎮</span>
+    Games
+  </button>
+  <button id="nav-profile" onclick="showScreen('profile')">
+    <span>👤</span>
+    Profile
+  </button>
 </nav>
-
+<script>
+function showScreen(screenName) {
+  const screens = document.querySelectorAll(".screen");
+  screens.forEach(screen => {
+    screen.classList.remove("active");
+  });
+  document.getElementById(screenName).classList.add("active");
+  const navButtons = document.querySelectorAll("nav button");
+  navButtons.forEach(button => {
+    button.classList.remove("active");
+  });
+  const activeButton = document.getElementById("nav-" + screenName);
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+  window.scrollTo(0, 0);
+}
+</script>
 </body>
 </html>

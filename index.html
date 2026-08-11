@@ -410,7 +410,24 @@ main::before {
 }
 
 /* Character placeholders */
+.hero-image {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
+}
 
+.hero-image img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
 .character {
   position: absolute;
 
@@ -967,14 +984,9 @@ main::before {
   <section class="hero">
 
     <!-- Character placeholders -->
-    <div class="character left">
-      🧑🏻‍🎤
-    </div>
-
-    <div class="character right">
-      👩🏻‍🎤
-    </div>
-
+ <div class="hero-image">
+  <img src="images/IMG_1506.jpeg" alt="Anime characters">
+</div>
     <div class="hero-content">
 
       <div class="welcome">

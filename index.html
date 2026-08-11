@@ -6,298 +6,898 @@
 <title>Vibely</title>
 <style>
 <style>
+/* =========================================================
+   VIBELY — ANIME DREAM / CHIBI UI
+   Stage 1 CSS
+   ========================================================= */
+
 * {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: #ffffff;
   min-height: 100vh;
-  overflow-x: hidden;
-  /* Anime Tokyo sky */
+
+  font-family:
+    "Trebuchet MS",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  color: #302844;
+
   background:
-    radial-gradient(circle at 15% 15%, rgba(255, 145, 205, .35), transparent 25%),
-    radial-gradient(circle at 85% 20%, rgba(77, 215, 255, .35), transparent 25%),
-    linear-gradient(160deg, #151b3d, #30245c 45%, #172e52);
-}
-/* Floating anime sparkles and petals */
-body::before {
-  content: "🌸   ✦   🌸   ✧   💫   🌸   ✦   🌸   ✧";
-  position: fixed;
-  top: 75px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 20px;
-  font-size: 20px;
-  letter-spacing: 12px;
-  line-height: 100px;
-  opacity: .35;
-  pointer-events: none;
-  z-index: 0;
-}
-/* Extra dreamy glow */
-body::after {
-  content: "";
-  position: fixed;
-  width: 350px;
-  height: 350px;
-  right: -150px;
-  top: 180px;
-  background: #ff7dcc;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: .12;
-  pointer-events: none;
-  z-index: 0;
-}
-/* =========================
-   HEADER
-========================= */
-header {
-  position: relative;
-  z-index: 5;
-  padding: 25px 20px;
-  text-align: center;
-  font-size: 32px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  color: white;
-  background:
-    linear-gradient(
-      135deg,
-      #ff79c9,
-      #9b7cff,
-      #55dfff
-    );
-  border-bottom: 2px solid rgba(255,255,255,.4);
-  box-shadow:
-    0 5px 30px rgba(111, 178, 255, .35);
-}
-header::before {
-  content: "🌸";
-  position: absolute;
-  left: 20px;
-  font-size: 23px;
-}
-header::after {
-  content: "✨ 🎀";
-  position: absolute;
-  right: 20px;
-  font-size: 18px;
-}
-/* =========================
-   MAIN
-========================= */
-main {
-  position: relative;
-  z-index: 2;
-  max-width: 650px;
-  margin: auto;
-  padding: 25px 20px 115px;
-}
-/* Pages */
-.page {
-  display: none;
-}
-.page.active {
-  display: block;
-}
-/* =========================
-   HEADINGS
-========================= */
-h2 {
-  text-align: center;
-  font-size: 28px;
-  color: #ffffff;
-  text-shadow:
-    0 0 8px #ff9edb,
-    0 0 18px #6edcff;
-}
-h3 {
-  color: #ffd4ee;
-}
-p {
-  color: #e5dff0;
-}
-/* Anime welcome message */
-#home::before {
-  content: "♡ Welcome to your anime world ♡";
-  display: block;
-  text-align: center;
-  color: #ffd1ed;
-  font-size: 14px;
-  margin-bottom: 18px;
-  text-shadow:
-    0 0 10px #ff76c8;
-}
-/* =========================
-   CARDS
-========================= */
-.card,
-.big-button {
-  position: relative;
-  overflow: hidden;
-  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(255, 224, 243, .95),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(207, 197, 255, .9),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(226, 215, 255, .8),
+      transparent 35%
+    ),
     linear-gradient(
       145deg,
-      rgba(255,255,255,.14),
-      rgba(255,255,255,.05)
+      #f8eafa 0%,
+      #e8e2fa 45%,
+      #dcecff 100%
     );
-  color: white;
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 22px;
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.25),
-    inset 0 1px rgba(255,255,255,.12);
+
+  overflow-x: hidden;
 }
-/* Sparkle on cards */
-.card::after,
-.big-button::after {
-  content: "✦";
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: #ffd1ed;
-  font-size: 18px;
-  text-shadow:
-    0 0 10px #ff71c9;
-}
-/* =========================
-   HOME BUTTONS
-========================= */
-.big-button {
+
+/* =========================================================
+   BACKGROUND DECORATIONS
+   ========================================================= */
+
+body::before {
+  content:
+    "✦   ♡   ✧   🌸   ✦   ♡   ✧   🌸   ✦   ♡";
+
+  position: fixed;
+
+  top: 70px;
+  left: 0;
+
   width: 100%;
-  padding: 20px;
-  margin: 12px 0;
-  text-align: left;
-  font-size: 17px;
-  cursor: pointer;
-  transition: .25s;
+  height: 100%;
+
+  font-size: 18px;
+  line-height: 100px;
+  letter-spacing: 12px;
+
+  color: rgba(142, 119, 170, .30);
+
+  pointer-events: none;
+
+  z-index: 0;
 }
-.big-button:hover {
-  transform: translateY(-4px);
-  border-color: #ff9ddd;
-  box-shadow:
-    0 10px 30px rgba(255,100,200,.3),
-    0 0 20px rgba(74,215,255,.25);
+
+body::after {
+  content: "";
+
+  position: fixed;
+
+  width: 300px;
+  height: 300px;
+
+  top: 25%;
+  right: -150px;
+
+  border-radius: 50%;
+
+  background: #e8b9e8;
+
+  filter: blur(100px);
+
+  opacity: .18;
+
+  pointer-events: none;
+
+  z-index: 0;
 }
-/* =========================
-   ACTION BUTTONS
-========================= */
-.action {
-  border: none;
-  border-radius: 14px;
-  padding: 12px 20px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  background:
-    linear-gradient(
-      135deg,
-      #ff66c7,
-      #936cff,
-      #4fdcff
-    );
-  box-shadow:
-    0 5px 18px rgba(111,108,255,.4);
-  transition: .2s;
-}
-.action:hover {
-  transform: scale(1.05);
-  box-shadow:
-    0 0 20px rgba(255,135,215,.7);
-}
-/* =========================
-   BACK BUTTON
-========================= */
-.back {
-  border: none;
-  background: transparent;
-  color: #ffd0ec;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-/* =========================
-   ANIME AVATAR
-========================= */
-.avatar {
-  font-size: 60px;
-  width: 105px;
-  height: 105px;
-  margin: 25px auto;
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+  position: relative;
+
+  z-index: 5;
+
+  min-height: 105px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+
+  padding: 20px 70px;
+
+  color: #fff;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 42px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 2px 5px rgba(65, 44, 75, .55),
+    0 0 14px rgba(255, 220, 247, .8);
+
   background:
-    radial-gradient(
-      circle,
-      #ff9fda,
-      #9c82ff 55%,
-      #54dfff
+    linear-gradient(
+      135deg,
+      #3c294b,
+      #5a4267 45%,
+      #3a304f
     );
-  border: 3px solid rgba(255,255,255,.7);
+
+  border-bottom:
+    3px solid #d9b6d8;
+
   box-shadow:
-    0 0 20px rgba(255,120,210,.65),
-    0 0 35px rgba(77,214,255,.4);
+    0 5px 25px rgba(58, 39, 70, .35);
 }
-/* =========================
-   NAVIGATION
-========================= */
-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-around;
-  padding: 12px 4px;
+
+/* Decorative lines */
+
+header::before {
+  content: "✧  ♡  🎀  ♡  ✧";
+
+  position: absolute;
+
+  left: 22px;
+  top: 12px;
+
+  color: #f4cce8;
+
+  font-size: 18px;
+
+  letter-spacing: 7px;
+
+  opacity: .9;
+}
+
+header::after {
+  content: "✧  🎀  ♡  ✧";
+
+  position: absolute;
+
+  right: 22px;
+  bottom: 12px;
+
+  color: #efc9e5;
+
+  font-size: 18px;
+
+  letter-spacing: 7px;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+  position: relative;
+
+  z-index: 1;
+
+  width: calc(100% - 28px);
+
+  max-width: 1000px;
+
+  margin: 22px auto 0;
+
+  padding:
+    25px
+    25px
+    120px;
+
+  border:
+    2px solid rgba(112, 82, 121, .45);
+
+  border-radius: 22px;
+
   background:
-    rgba(20,25,55,.9);
-  backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255,255,255,.25);
+    linear-gradient(
+      145deg,
+      rgba(255, 247, 252, .93),
+      rgba(244, 239, 255, .90)
+    );
+
   box-shadow:
-    0 -5px 25px rgba(0,0,0,.45);
+    0 15px 45px rgba(73, 53, 86, .25),
+    inset 0 0 30px rgba(255, 255, 255, .65);
 }
-nav button {
-  border: none;
-  background: transparent;
-  color: #d8d4e8;
-  font-size: 12px;
+
+/* Decorative inner frame */
+
+main::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 9px;
+
+  border:
+    1px solid rgba(159, 124, 165, .4);
+
+  border-radius: 16px;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   PAGES
+   ========================================================= */
+
+.page {
+  display: none;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.page.active {
+  display: block;
+}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+#home {
+  padding: 15px 10px;
+}
+
+/* Welcome decoration */
+
+#home::before {
+  content:
+    "♡  Welcome to your anime world  ♡";
+
+  display: block;
+
+  text-align: center;
+
+  margin-bottom: 12px;
+
+  color: #87658e;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  font-style: italic;
+
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h2 {
+  margin-top: 10px;
+
+  text-align: center;
+
+  color: #4d3a59;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 34px;
+
+  font-style: italic;
+
+  text-shadow:
+    0 2px 0 #fff,
+    0 0 10px rgba(211, 170, 216, .65);
+}
+
+h2::before {
+  content: "✦ ";
+
+  color: #bd91ba;
+}
+
+h2::after {
+  content: " ✦";
+
+  color: #bd91ba;
+}
+
+h3 {
+  color: #5b4163;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 23px;
+}
+
+p {
+  color: #62576b;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   HOME INTRO
+   ========================================================= */
+
+#home > p {
+  text-align: center;
+
+  font-size: 17px;
+
+  margin-bottom: 28px;
+
+  color: #665a72;
+}
+
+/* =========================================================
+   LARGE HOME BUTTONS
+   ========================================================= */
+
+.big-button {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 105px;
+
+  margin: 15px 0;
+
+  padding:
+    20px
+    105px
+    20px
+    115px;
+
+  text-align: left;
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+  color: #4b3b53;
+
   cursor: pointer;
+
+  border:
+    2px solid #d9c2dc;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #f9edf5,
+      #f1e9fa 55%,
+      #eee5f8
+    );
+
+  box-shadow:
+    0 7px 18px rgba(83, 59, 91, .14),
+    inset 0 0 18px rgba(255,255,255,.7);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+/* Lace-like top decoration */
+
+.big-button::before {
+  content:
+    "♡  ✦  ♡  ✦  ♡";
+
+  position: absolute;
+
+  top: 5px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #c99fc4;
+
+  font-size: 11px;
+
+  letter-spacing: 9px;
+
+  opacity: .65;
+}
+
+/* Decorative bow/sparkle */
+
+.big-button::after {
+  content: "🎀";
+
+  position: absolute;
+
+  right: 25px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 30px;
+
+  opacity: .85;
+
+  filter:
+    drop-shadow(
+      0 2px 3px rgba(80,50,80,.25)
+    );
+}
+
+.big-button:hover {
+  transform:
+    translateY(-4px)
+    scale(1.01);
+
+  border-color: #c994c7;
+
+  box-shadow:
+    0 12px 28px rgba(94, 66, 105, .22),
+    0 0 18px rgba(218, 173, 224, .5);
+}
+
+/* =========================================================
+   CARD ICONS / DECORATION
+   ========================================================= */
+
+.card {
+  position: relative;
+
+  margin: 16px 0;
+
+  padding: 22px;
+
+  border:
+    2px solid #dbc6df;
+
+  border-radius: 18px;
+
+  color: #4b3b53;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,250,253,.95),
+      rgba(241,235,250,.95)
+    );
+
+  box-shadow:
+    0 8px 20px rgba(77, 55, 88, .13),
+    inset 0 0 18px rgba(255,255,255,.8);
+}
+
+.card::before {
+  content: "✦";
+
+  position: absolute;
+
+  top: 10px;
+  right: 18px;
+
+  color: #c895c8;
+
+  font-size: 17px;
+}
+
+.card::after {
+  content: "♡";
+
+  position: absolute;
+
+  bottom: 10px;
+  right: 18px;
+
+  color: #d9a5c9;
+
+  font-size: 18px;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.action {
+  padding:
+    11px
+    23px;
+
+  border:
+    2px solid #c59bc4;
+
+  border-radius: 14px;
+
+  color: #4b3852;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8d9ed,
+      #ddd1f3
+    );
+
+  box-shadow:
+    0 5px 12px rgba(82, 55, 93, .16);
+
   transition: .2s;
 }
-nav button:hover {
-  color: #ff9fda;
-  transform: translateY(-4px);
-  text-shadow:
-    0 0 10px #ff70c8;
+
+.action:hover {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7cbe7,
+      #cfc1f0
+    );
+
+  box-shadow:
+    0 0 16px rgba(213, 160, 207, .55);
 }
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.back {
+  border: none;
+
+  background: transparent;
+
+  color: #765681;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  padding: 8px;
+
+  transition: .2s;
+}
+
+.back:hover {
+  color: #bd7fb3;
+
+  transform: translateX(-3px);
+}
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.profile {
+  text-align: center;
+}
+
+.avatar {
+  width: 115px;
+  height: 115px;
+
+  margin: 25px auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    4px solid #dfc5df;
+
+  border-radius: 50%;
+
+  font-size: 62px;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fff4fb,
+      #e4d6f1 55%,
+      #c9d4ef
+    );
+
+  box-shadow:
+    0 8px 20px rgba(71, 51, 83, .2),
+    0 0 25px rgba(220, 182, 221, .65);
+}
+
+/* =========================================================
+   SAFETY BOX
+   ========================================================= */
+
+.safety {
+  position: relative;
+
+  margin-top: 25px;
+
+  padding: 18px;
+
+  border:
+    2px solid #d7bfd9;
+
+  border-radius: 16px;
+
+  background:
+    rgba(250,242,250,.9);
+
+  border-left:
+    5px solid #b68db8;
+
+  color: #55475c;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+nav {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 20;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding:
+    10px
+    10px
+    calc(10px + env(safe-area-inset-bottom));
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(48,34,57,.98),
+      rgba(61,46,73,.98)
+    );
+
+  border-top:
+    2px solid #caa4c9;
+
+  box-shadow:
+    0 -8px 25px rgba(47, 31, 55, .35);
+}
+
+/* Nav buttons */
+
+nav button {
+  position: relative;
+
+  flex: 1;
+
+  max-width: 150px;
+
+  padding:
+    7px
+    4px;
+
+  border:
+    1px solid transparent;
+
+  border-radius: 13px;
+
+  background: transparent;
+
+  color: #e7dce9;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+nav button:hover {
+  color: #ffd9f0;
+
+  background:
+    rgba(218,166,215,.12);
+
+  border-color:
+    rgba(222,181,219,.35);
+
+  transform: translateY(-2px);
+}
+
+nav button:first-child {
+  color: #ffd5ec;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(232,183,220,.28),
+      rgba(188,159,219,.16)
+    );
+
+  border:
+    1px solid rgba(238,201,232,.45);
+
+  box-shadow:
+    0 0 15px rgba(225,170,216,.2);
+}
+
 nav span {
   display: block;
-  font-size: 23px;
+
   margin-bottom: 3px;
+
+  font-size: 25px;
+
+  filter:
+    drop-shadow(
+      0 2px 3px rgba(0,0,0,.3)
+    );
 }
-/* =========================
-   SAFETY BOX
-========================= */
-.safety {
-  background:
-    rgba(255,255,255,.08);
-  border-left:
-    4px solid #ff7ccb;
-  padding: 16px;
-  border-radius: 16px;
-  box-shadow:
-    0 5px 20px rgba(255,100,200,.12);
-}
-/* Small text */
+
+/* =========================================================
+   SMALL TEXT
+   ========================================================= */
+
 small {
-  color: #ddd5e8;
+  display: block;
+
+  margin-top: 5px;
+
+  color: #74667b;
+
+  font-size: 14px;
+
+  font-weight: normal;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   ANIME-STYLE DECORATIVE SECTIONS
+   ========================================================= */
+
+.section {
+  position: relative;
+
+  margin: 25px 0;
+
+  padding-top: 15px;
+
+  border-top:
+    1px dashed #c7a8c9;
+}
+
+.section::before {
+  content:
+    "✦  ─── ♡ ───  ✦";
+
+  display: block;
+
+  text-align: center;
+
+  color: #bb91bb;
+
+  font-size: 12px;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE MOBILE DESIGN
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  header {
+    min-height: 82px;
+
+    padding: 18px 55px;
+
+    font-size: 32px;
+  }
+
+  header::before {
+    left: 10px;
+
+    font-size: 14px;
+  }
+
+  header::after {
+    right: 10px;
+
+    font-size: 14px;
+  }
+
+  main {
+    width: calc(100% - 14px);
+
+    margin-top: 10px;
+
+    padding:
+      18px
+      12px
+      115px;
+
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .big-button {
+    min-height: 100px;
+
+    padding:
+      20px
+      75px
+      20px
+      72px;
+
+    font-size: 19px;
+  }
+
+  .big-button::after {
+    right: 18px;
+
+    font-size: 24px;
+  }
+
+  nav {
+    gap: 2px;
+
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  nav button {
+    font-size: 11px;
+  }
+
+  nav span {
+    font-size: 22px;
+  }
 }
 </style>
 </style>

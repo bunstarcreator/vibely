@@ -1,88 +1,314 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#6c5ce7">
-  <link rel="manifest" href="manifest.json">
-  <title>Vibely</title>
-  <style>
-    *{box-sizing:border-box} body{margin:0;font-family:system-ui,sans-serif;background:#f6f5ff;color:#222}
-    header{background:#6c5ce7;color:white;padding:22px 18px;border-radius:0 0 24px 24px}
-    header h1{margin:0;font-size:30px} header p{margin:5px 0 0;opacity:.9}
-    main{max-width:720px;margin:auto;padding:18px}
-    .card{background:white;border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 5px 20px #00000010}
-    button{border:0;border-radius:14px;padding:13px 16px;background:#6c5ce7;color:white;font-weight:700;cursor:pointer}
-    button.secondary{background:#eeeaff;color:#4d3db5}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:12px;margin:7px 0 12px;font-size:16px}
-    .room{padding:14px;border:1px solid #eee;border-radius:15px;margin:9px 0}.muted{color:#777}
-    nav{position:sticky;bottom:0;background:white;padding:10px;display:flex;justify-content:space-around;border-top:1px solid #eee}
-    nav button{background:transparent;color:#555;padding:9px}.coins{font-weight:800}
-  </style>
-</head>
-<body>
-<header><h1>Vibely ✨</h1><p>Chat. Play. Connect.</p></header>
-<main id="app"></main>
-<nav>
-  <button onclick="showHome()">🏠 Home</button>
-  <button onclick="showRooms()">💬 Rooms</button>
-  <button onclick="showGames()">🎮 Games</button>
-  <button onclick="showProfile()">👤 Profile</button>
-</nav>
-<script>
-let profile=JSON.parse(localStorage.getItem('vibelyProfile')||'null');
-let coins=Number(localStorage.getItem('vibelyCoins')||0);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7c3aed">
+<title>Vibely</title>
 
-function save(){localStorage.setItem('vibelyProfile',JSON.stringify(profile));localStorage.setItem('vibelyCoins',coins)}
-function ageOK(age){return ['13–15','16–17','18+'].includes(age)}
-function setup(){
- app.innerHTML=`<div class="card"><h2>Welcome to Vibely 👋</h2><p>Create your profile to get started.</p>
- <label>Username</label><input id="name" maxlength="20" placeholder="Choose a username">
- <label>Age range</label><select id="age"><option>13–15</option><option>16–17</option><option>18+</option></select>
- <button onclick="createProfile()">Enter Vibely</button>
- <p class="muted">Use a nickname, not your real name.</p></div>`;
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
-function createProfile(){let name=document.getElementById('name').value.trim();let age=document.getElementById('age').value;
- if(!name)return alert('Please choose a username.'); profile={name,age,avatar:'😊'};save();showHome()}
-function showHome(){
- if(!profile)return setup();
- app.innerHTML=`<div class="card"><h2>Hey ${escape(profile.name)} ${profile.avatar}</h2><p>Welcome to your hangout.</p>
- <div class="grid"><div class="card"><b>🪙 ${coins}</b><br><span class="muted">Coins</span></div>
- <div class="card"><b>🏆 ${Math.floor(coins/10)}</b><br><span class="muted">XP</span></div></div></div>
- <div class="card"><h3>Quick play</h3><button onclick="showGames()">🎮 Pick a game</button>
- <button class="secondary" onclick="showRooms()">💬 Join a room</button></div>`;
+
+body {
+  background: #f7f5ff;
+  color: #202024;
+  padding-bottom: 80px;
 }
-function showRooms(){
- if(!profile)return setup();
- app.innerHTML=`<div class="card"><h2>💬 Hangout Rooms</h2><p class="muted">Age-appropriate group spaces.</p>
- <div class="room"><b>🎉 Chill Zone</b><p>Talk, meet people and use reactions.</p><button onclick="enterRoom('Chill Zone')">Join</button></div>
- <div class="room"><b>🎯 Game Talk</b><p>Find people to play mini-games with.</p><button onclick="enterRoom('Game Talk')">Join</button></div>
- <div class="room"><b>🎨 Creative Corner</b><p>Share ideas, drawings and challenges.</p><button onclick="enterRoom('Creative Corner')">Join</button></div>
- </div>`;
+
+header {
+  background: #7c3aed;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-function enterRoom(room){app.innerHTML=`<div class="card"><h2>💬 ${room}</h2><p class="muted">Demo room — live chat will be added in a later version.</p>
- <div class="room">✨ Welcome to the room!</div><input id="msg" placeholder="Type a message..."><button onclick="alert('Chat is a demo in V1.')">Send</button>
- <p><button class="secondary" onclick="alert('Report/block tools will be connected before real users join.')">🚩 Safety</button></p></div>`}
-function showGames(){
- if(!profile)return setup();
- app.innerHTML=`<div class="card"><h2>🎮 Games</h2><p>Choose a quick game.</p>
- <div class="room"><b>🤔 Would You Rather</b><p>Pick an answer and earn a coin.</p><button onclick="wyr()">Play</button></div>
- <div class="room"><b>🧠 Quick Trivia</b><p>Test your knowledge.</p><button onclick="trivia()">Play</button></div>
- <div class="room"><b>🔤 Word Challenge</b><p>Coming soon.</p><button class="secondary" disabled>Coming soon</button></div></div>`;
+
+header h1 {
+  font-size: 28px;
 }
-function wyr(){let a=Math.random()<.5?'Have unlimited pizza 🍕':'Have unlimited ice cream 🍦';coins++;save();app.innerHTML=`<div class="card"><h2>🤔 Would You Rather?</h2><p>Would you rather ${a.toLowerCase()}?</p><button onclick="showGames()">Submit</button><p>🪙 +1 coin</p></div>`}
-function trivia(){let ok=confirm('Trivia: Which planet is known as the Red Planet?\nOK = Mars\nCancel = Try again');
- if(ok)coins+=3;else coins++;save();alert(ok?'Correct! +3 coins 🎉':'Nice try! +1 coin');showGames()}
-function showProfile(){
- if(!profile)return setup();
- app.innerHTML=`<div class="card"><h2>👤 Profile</h2><p style="font-size:42px">${profile.avatar}</p><h3>${escape(profile.name)}</h3>
- <p>Age range: ${profile.age}</p><p>🪙 ${coins} coins</p>
- <button onclick="changeAvatar()">Change avatar</button> <button class="secondary" onclick="localStorage.clear();profile=null;coins=0;setup()">Reset demo</button></div>`;
+
+.profile-btn {
+  background: white;
+  color: #7c3aed;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
 }
-function changeAvatar(){let x=prompt('Choose an emoji avatar: 😊 😎 🐸 🐼 🦊 🐱');if(x){profile.avatar=x.slice(0,2);save();showProfile()}}
-function escape(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-if('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
-showHome();
-</script>
+
+main {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.welcome {
+  margin-bottom: 25px;
+}
+
+.welcome h2 {
+  font-size: 25px;
+  margin-bottom: 6px;
+}
+
+.welcome p {
+  color: #666;
+}
+
+.section {
+  margin-top: 25px;
+}
+
+.section h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.card h4 {
+  margin-bottom: 5px;
+}
+
+.card p {
+  color: #777;
+  font-size: 14px;
+}
+
+.chat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+
+.chat-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #ede9fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.chat-info {
+  flex: 1;
+}
+
+.chat-info h4 {
+  margin-bottom: 4px;
+}
+
+.chat-info p {
+  color: #777;
+  font-size: 13px;
+}
+
+.join {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 13px;
+  font-weight: bold;
+}
+
+.safety {
+  background: white;
+  border-left: 5px solid #7c3aed;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+.safety h3 {
+  margin-bottom: 7px;
+}
+
+.safety p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 5px;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+}
+
+nav button {
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: #666;
+}
+
+nav button span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Vibely</h1>
+  <button class="profile-btn">👤</button>
+</header>
+
+<main>
+
+<div class="welcome">
+  <h2>Welcome to Vibely 👋</h2>
+  <p>Find people, interests and games you enjoy.</p>
+</div>
+
+<section class="section">
+  <h3>Explore</h3>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-icon">👥</div>
+      <h4>People</h4>
+      <p>Discover people in your age range.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h4>Chat Rooms</h4>
+      <p>Join moderated group conversations.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎮</div>
+      <h4>Games</h4>
+      <p>Play fun games with friends.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">⭐</div>
+      <h4>Interests</h4>
+      <p>Connect through shared interests.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <h3>Popular Rooms</h3>
+
+  <div class="chat">
+    <div class="chat-icon">🎮</div>
+
+    <div class="chat-info">
+      <h4>Gaming</h4>
+      <p>Talk about your favorite games</p>
+    </div>
+
+    <button class="join">Join</button>
+  </div>
+
+  <div class="chat">
+    <div class="chat-icon">🎵</div>
+
+    <div class="chat-info">
+      <h4>Music</h4>
+      <p>Share music and discover artists</p>
+    </div>
+
+    <button class="join">Join</button>
+  </div>
+
+  <div class="chat">
+    <div class="chat-icon">🎨</div>
+
+    <div class="chat-info">
+      <h4>Art & Creativity</h4>
+      <p>Share creative ideas and projects</p>
+    </div>
+
+    <button class="join">Join</button>
+  </div>
+
+</section>
+
+<div class="safety">
+  <h3>🛡️ Vibely Safety</h3>
+  <p>
+    Keep conversations respectful. Never share private information
+    such as your address, passwords or exact location. You can report
+    or block someone whenever you feel uncomfortable.
+  </p>
+</div>
+
+</main>
+
+<nav>
+
+<button>
+  <span>🏠</span>
+  Home
+</button>
+
+<button>
+  <span>🔎</span>
+  Discover
+</button>
+
+<button>
+  <span>💬</span>
+  Chats
+</button>
+
+<button>
+  <span>🎮</span>
+  Games
+</button>
+
+<button>
+  <span>👤</span>
+  Profile
+</button>
+
+</nav>
+
 </body>
 </html>

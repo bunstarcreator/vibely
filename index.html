@@ -3,176 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#7c3aed">
 <title>Vibely</title>
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
 body {
+  margin: 0;
+  font-family: Arial, sans-serif;
   background: #f7f5ff;
-  color: #202024;
-  padding-bottom: 80px;
+  color: #222;
 }
 header {
   background: #7c3aed;
   color: white;
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header h1 {
   font-size: 28px;
+  font-weight: bold;
 }
 main {
-  max-width: 700px;
-  margin: auto;
   padding: 20px;
+  max-width: 650px;
+  margin: auto;
 }
-.screen {
+.page {
   display: none;
 }
-.screen.active {
+.page.active {
   display: block;
-}
-.welcome {
-  margin-bottom: 25px;
-}
-.welcome h2 {
-  font-size: 25px;
-  margin-bottom: 6px;
-}
-.welcome p {
-  color: #666;
-}
-.section {
-  margin-top: 25px;
-}
-.section h3 {
-  margin-bottom: 12px;
-  font-size: 20px;
-}
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
 }
 .card {
   background: white;
-  border: none;
-  border-radius: 18px;
   padding: 20px;
-  text-align: left;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  margin: 12px 0;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+button {
+  cursor: pointer;
+}
+.big-button {
   width: 100%;
-}
-.card-icon {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-.card h4 {
-  margin-bottom: 5px;
-}
-.card p {
-  color: #777;
-  font-size: 14px;
-}
-.list-item {
+  padding: 20px;
+  border: 0;
+  border-radius: 16px;
   background: white;
-  padding: 17px;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin: 8px 0;
+  text-align: left;
+  font-size: 17px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.08);
 }
-.icon {
-  font-size: 28px;
-}
-.info {
-  flex: 1;
-}
-.info h4 {
-  margin-bottom: 4px;
-}
-.info p {
-  color: #777;
-  font-size: 13px;
-}
-.action {
-  background: #7c3aed;
-  color: white;
-  border: none;
-  padding: 9px 13px;
-  border-radius: 10px;
-  font-weight: bold;
+.big-button:hover {
+  background: #eee8ff;
 }
 .back {
-  border: none;
-  background: transparent;
+  border: 0;
+  background: none;
   color: #7c3aed;
   font-size: 16px;
-  margin-bottom: 18px;
-  font-weight: bold;
-}
-.profile-box {
-  background: white;
-  border-radius: 20px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-}
-.avatar {
-  width: 80px;
-  height: 80px;
-  background: #ede9fe;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  margin: 0 auto 15px;
-}
-.interests {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 15px;
-}
-.tag {
-  background: #ede9fe;
-  color: #6d28d9;
-  padding: 7px 11px;
-  border-radius: 20px;
-  font-size: 13px;
-}
-.game {
-  background: white;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 12px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-}
-.game button {
-  margin-top: 12px;
-}
-.safety {
-  background: white;
-  border-left: 5px solid #7c3aed;
-  padding: 16px;
-  border-radius: 12px;
-  margin-top: 25px;
-}
-.safety p {
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5;
+  margin-bottom: 15px;
 }
 nav {
   position: fixed;
@@ -182,219 +68,179 @@ nav {
   background: white;
   display: flex;
   justify-content: space-around;
-  padding: 10px 5px;
-  box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
-  z-index: 20;
+  padding: 12px 4px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,.1);
 }
 nav button {
-  border: none;
+  border: 0;
   background: none;
-  font-size: 12px;
-  color: #666;
+  font-size: 13px;
 }
-nav button.active {
-  color: #7c3aed;
-  font-weight: bold;
-}
-nav button span {
+nav span {
   display: block;
-  font-size: 21px;
+  font-size: 22px;
   margin-bottom: 3px;
+}
+.profile {
+  text-align: center;
+}
+.avatar {
+  font-size: 60px;
+  background: #eee8ff;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.action {
+  background: #7c3aed;
+  color: white;
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: bold;
 }
 </style>
 </head>
 <body>
-<header>
-  <h1>Vibely</h1>
-</header>
+<header>Vibely</header>
 <main>
 <!-- HOME -->
-<section id="home" class="screen active">
-  <div class="welcome">
-    <h2>Welcome to Vibely 👋</h2>
-    <p>Find people, interests and games you enjoy.</p>
-  </div>
-  <div class="section">
-    <h3>Explore</h3>
-    <div class="cards">
-      <button class="card" onclick="showScreen('discover')">
-        <div class="card-icon">👥</div>
-        <h4>People</h4>
-        <p>Discover people in your age range.</p>
-      </button>
-      <button class="card" onclick="showScreen('chats')">
-        <div class="card-icon">💬</div>
-        <h4>Chat Rooms</h4>
-        <p>Join moderated group conversations.</p>
-      </button>
-      <button class="card" onclick="showScreen('games')">
-        <div class="card-icon">🎮</div>
-        <h4>Games</h4>
-        <p>Play fun games with friends.</p>
-      </button>
-      <button class="card" onclick="showScreen('discover')">
-        <div class="card-icon">⭐</div>
-        <h4>Interests</h4>
-        <p>Find people with similar interests.</p>
-      </button>
-    </div>
-  </div>
-  <div class="safety">
-    <h3>🛡️ Vibely Safety</h3>
-    <p>
-      Keep conversations respectful. Never share your address,
-      passwords or exact location. Use report or block features
-      if someone makes you uncomfortable.
-    </p>
-  </div>
-</section>
+<div id="home" class="page active">
+  <h2>Welcome to Vibely 👋</h2>
+  <p>Find people, interests and games you enjoy.</p>
+  <button class="big-button" onclick="go('discover')">
+    👥 People<br>
+    <small>Discover people in your age range.</small>
+  </button>
+  <button class="big-button" onclick="go('chats')">
+    💬 Chat Rooms<br>
+    <small>Join moderated group conversations.</small>
+  </button>
+  <button class="big-button" onclick="go('games')">
+    🎮 Games<br>
+    <small>Play fun games.</small>
+  </button>
+  <button class="big-button" onclick="go('profile')">
+    👤 Profile<br>
+    <small>Set up your Vibely profile.</small>
+  </button>
+</div>
 <!-- DISCOVER -->
-<section id="discover" class="screen">
-  <button class="back" onclick="showScreen('home')">← Home</button>
+<div id="discover" class="page">
+  <button class="back" onclick="go('home')">← Home</button>
   <h2>🔎 Discover</h2>
-  <br>
-  <div class="list-item">
-    <div class="icon">👤</div>
-    <div class="info">
-      <h4>Alex</h4>
-      <p>Gaming • Music • Basketball</p>
-    </div>
-    <button class="action">View</button>
+  <div class="card">
+    👤 Alex
+    <p>Gaming • Music • Basketball</p>
+    <button class="action">View Profile</button>
   </div>
-  <div class="list-item">
-    <div class="icon">👤</div>
-    <div class="info">
-      <h4>Jordan</h4>
-      <p>Art • Music • Movies</p>
-    </div>
-    <button class="action">View</button>
+  <div class="card">
+    👤 Jordan
+    <p>Art • Music • Movies</p>
+    <button class="action">View Profile</button>
   </div>
-  <div class="list-item">
-    <div class="icon">👤</div>
-    <div class="info">
-      <h4>Taylor</h4>
-      <p>Gaming • Sports • Anime</p>
-    </div>
-    <button class="action">View</button>
+  <div class="card">
+    👤 Taylor
+    <p>Gaming • Sports • Anime</p>
+    <button class="action">View Profile</button>
   </div>
-</section>
+</div>
 <!-- CHATS -->
-<section id="chats" class="screen">
-  <button class="back" onclick="showScreen('home')">← Home</button>
+<div id="chats" class="page">
+  <button class="back" onclick="go('home')">← Home</button>
   <h2>💬 Chat Rooms</h2>
-  <br>
-  <div class="list-item">
-    <div class="icon">🎮</div>
-    <div class="info">
-      <h4>Gaming</h4>
-      <p>Talk about your favorite games.</p>
-    </div>
-    <button class="action">Join</button>
+  <div class="card">
+    🎮 <strong>Gaming</strong>
+    <p>Talk about games and gaming.</p>
+    <button class="action">Join Room</button>
   </div>
-  <div class="list-item">
-    <div class="icon">🎵</div>
-    <div class="info">
-      <h4>Music</h4>
-      <p>Share music and discover artists.</p>
-    </div>
-    <button class="action">Join</button>
+  <div class="card">
+    🎵 <strong>Music</strong>
+    <p>Talk about music and artists.</p>
+    <button class="action">Join Room</button>
   </div>
-  <div class="list-item">
-    <div class="icon">🎨</div>
-    <div class="info">
-      <h4>Art & Creativity</h4>
-      <p>Share creative ideas.</p>
-    </div>
-    <button class="action">Join</button>
+  <div class="card">
+    🎨 <strong>Art & Creativity</strong>
+    <p>Share creative ideas.</p>
+    <button class="action">Join Room</button>
   </div>
-</section>
+</div>
 <!-- GAMES -->
-<section id="games" class="screen">
-  <button class="back" onclick="showScreen('home')">← Home</button>
+<div id="games" class="page">
+  <button class="back" onclick="go('home')">← Home</button>
   <h2>🎮 Games</h2>
-  <br>
-  <div class="game">
-    <h3>Would You Rather?</h3>
-    <p>Choose between two fun options.</p>
-    <button class="action" onclick="alert('Game coming soon!')">
-      Play
-    </button>
-  </div>
-  <div class="game">
+  <div class="card">
     <h3>Trivia</h3>
     <p>Test your knowledge.</p>
-    <button class="action" onclick="alert('Trivia coming soon!')">
+    <button class="action" onclick="alert('Trivia is coming soon!')">
       Play
     </button>
   </div>
-  <div class="game">
+  <div class="card">
     <h3>Guess the Emoji</h3>
-    <p>Guess what the emojis represent.</p>
-    <button class="action" onclick="alert('Game coming soon!')">
+    <p>Guess what the emojis mean.</p>
+    <button class="action" onclick="alert('Guess the Emoji is coming soon!')">
       Play
     </button>
   </div>
-</section>
+  <div class="card">
+    <h3>Would You Rather?</h3>
+    <p>Choose between fun options.</p>
+    <button class="action" onclick="alert('Would You Rather is coming soon!')">
+      Play
+    </button>
+  </div>
+</div>
 <!-- PROFILE -->
-<section id="profile" class="screen">
-  <button class="back" onclick="showScreen('home')">← Home</button>
+<div id="profile" class="page profile">
+  <button class="back" onclick="go('home')">← Home</button>
   <h2>👤 Profile</h2>
-  <br>
-  <div class="profile-box">
-    <div class="avatar">👤</div>
-    <h2>Your Profile</h2>
-    <p style="color:#777;margin-top:7px;">
-      Your profile will appear here.
-    </p>
-    <div class="interests">
-      <span class="tag">🎮 Gaming</span>
-      <span class="tag">🎵 Music</span>
-      <span class="tag">🎨 Art</span>
-    </div>
+  <div class="avatar">👤</div>
+  <div class="card">
+    <h3>Your Vibely Profile</h3>
+    <p>Your profile setup will go here.</p>
     <br>
-    <button class="action" onclick="alert('Profile editing coming next!')">
+    <button class="action" onclick="alert('Profile editing is coming next!')">
       Edit Profile
     </button>
   </div>
-</section>
+</div>
 </main>
-<!-- NAVIGATION -->
 <nav>
-  <button id="nav-home" onclick="showScreen('home')" class="active">
-    <span>🏠</span>
-    Home
-  </button>
-  <button id="nav-discover" onclick="showScreen('discover')">
-    <span>🔎</span>
-    Discover
-  </button>
-  <button id="nav-chats" onclick="showScreen('chats')">
-    <span>💬</span>
-    Chats
-  </button>
-  <button id="nav-games" onclick="showScreen('games')">
-    <span>🎮</span>
-    Games
-  </button>
-  <button id="nav-profile" onclick="showScreen('profile')">
-    <span>👤</span>
-    Profile
-  </button>
+<button onclick="go('home')">
+<span>🏠</span>
+Home
+</button>
+<button onclick="go('discover')">
+<span>🔎</span>
+Discover
+</button>
+<button onclick="go('chats')">
+<span>💬</span>
+Chats
+</button>
+<button onclick="go('games')">
+<span>🎮</span>
+Games
+</button>
+<button onclick="go('profile')">
+<span>👤</span>
+Profile
+</button>
 </nav>
 <script>
-function showScreen(screenName) {
-  const screens = document.querySelectorAll(".screen");
-  screens.forEach(screen => {
-    screen.classList.remove("active");
-  });
-  document.getElementById(screenName).classList.add("active");
-  const navButtons = document.querySelectorAll("nav button");
-  navButtons.forEach(button => {
-    button.classList.remove("active");
-  });
-  const activeButton = document.getElementById("nav-" + screenName);
-  if (activeButton) {
-    activeButton.classList.add("active");
+function go(pageName) {
+  var pages = document.getElementsByClassName("page");
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove("active");
+  }
+  var page = document.getElementById(pageName);
+  if (page) {
+    page.classList.add("active");
   }
   window.scrollTo(0, 0);
 }

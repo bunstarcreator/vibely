@@ -8,85 +8,106 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f7f5ff;
-  color: #222;
+  background: #120f14;
+  color: #f7eef5;
 }
+
 header {
-  background: #7c3aed;
-  color: white;
+  background: linear-gradient(135deg, #24152d, #4a1628);
+  color: #fff5fb;
   padding: 20px;
   font-size: 28px;
   font-weight: bold;
+  border-bottom: 1px solid #6d2845;
 }
+
 main {
   padding: 20px;
   max-width: 650px;
   margin: auto;
 }
+
 .page {
   display: none;
 }
+
 .page.active {
   display: block;
 }
-.card {
-  background: white;
-  padding: 20px;
-  margin: 12px 0;
+
+.card,
+.big-button {
+  background: #211a23;
+  color: #f7eef5;
+  border: 1px solid #382b3b;
   border-radius: 16px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.08);
+  box-shadow: 0 4px 15px rgba(0,0,0,.35);
 }
-button {
-  cursor: pointer;
-}
+
 .big-button {
   width: 100%;
   padding: 20px;
-  border: 0;
-  border-radius: 16px;
-  background: white;
   margin: 8px 0;
   text-align: left;
   font-size: 17px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.08);
 }
+
 .big-button:hover {
-  background: #eee8ff;
+  background: #2b1d30;
+  border-color: #6d2845;
 }
+
+.action {
+  background: linear-gradient(135deg, #713c91, #7a263f);
+  color: white;
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
 .back {
   border: 0;
   background: none;
-  color: #7c3aed;
+  color: #d99abb;
   font-size: 16px;
   margin-bottom: 15px;
 }
+
 nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: #181319;
   display: flex;
   justify-content: space-around;
   padding: 12px 4px;
-  box-shadow: 0 -2px 10px rgba(0,0,0,.1);
+  box-shadow: 0 -3px 15px rgba(0,0,0,.45);
+  border-top: 1px solid #382b3b;
 }
+
 nav button {
   border: 0;
   background: none;
+  color: #aa9ba8;
   font-size: 13px;
 }
+
 nav span {
   display: block;
   font-size: 22px;
   margin-bottom: 3px;
 }
+
 .profile {
   text-align: center;
 }
+
 .avatar {
   font-size: 60px;
-  background: #eee8ff;
+  background: #321d32;
+  border: 2px solid #7a263f;
   width: 90px;
   height: 90px;
   border-radius: 50%;
@@ -95,13 +116,18 @@ nav span {
   align-items: center;
   justify-content: center;
 }
-.action {
-  background: #7c3aed;
-  color: white;
-  border: 0;
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-weight: bold;
+
+.safety {
+  background: #211a23;
+  border-left: 4px solid #7a263f;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+p,
+small {
+  color: #b9aab5;
 }
 </style>
 </head>
